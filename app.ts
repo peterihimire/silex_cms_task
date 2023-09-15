@@ -13,6 +13,18 @@ import {
   unknownRoute,
 } from "./src/middlewares/error-handler";
 
+type User = {
+  id: string;
+  email: string;
+};
+
+// Augment express-session with a custom SessionData object
+declare module "express-session" {
+  interface SessionData {
+    user: User;
+  }
+}
+
 let redisclient = redis.createClient({
   legacyMode: false,
   socket: {
@@ -69,7 +81,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.set("trust proxy", 1);
-app.use("/api/ecommerce/v1/auth", session(sessionOptions), authRoute);
+app.use("/api/silex_task/v1/auth", session(sessionOptions), authRoute);
 app.use("/api/silex_task/v1/tests", testRoute);
 
 app.use(unknownRoute);

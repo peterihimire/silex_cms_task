@@ -1,23 +1,18 @@
 import { RequestHandler } from "express";
 import { httpStatusCodes } from "../utils/http-status-codes";
 import BaseError from "../utils/base-error";
-// import db from "../database/models";
-// const db = require("../models");
 import db from "../models";
-// import bcrypt from "bcryptjs";
-import { default as bcrypt } from "bcryptjs";
-import randomString from "../utils/acc-generator";
-import { CHARLIST } from "../utils/list-data";
-import { sign, verify } from "jsonwebtoken";
-require("dotenv").config();
+import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+dotenv.config();
 const User = db.users;
 
+// @route POST api/auth/login
+// @desc Login into account
+// @access Public
 export const register: RequestHandler = async (req, res, next) => {
-  const { first_name, last_name, email, phone } = req.body;
+  const { email } = req.body;
   const original_password = req.body.password;
-
-  let acctnum;
-  acctnum = randomString(10, CHARLIST);
 
   console.log("thia is ...", User);
   try {
@@ -35,25 +30,14 @@ export const register: RequestHandler = async (req, res, next) => {
         )
       );
     }
-    const existing_acct_id = await User.findOne({
-      where: { acct_id: acctnum },
-    });
-    if (existing_acct_id) {
-      console.log("This code block got executed!", acctnum);
-      acctnum = randomString(10, CHARLIST);
-      console.log("After the code block, here's new acctnum!", acctnum);
-    }
+
     const salt = await bcrypt.genSalt();
     const hashed_password = await bcrypt.hash(original_password, salt);
 
     // CREATE NEW ACCOUNT
     const createdUser = await User.create({
-      first_name: first_name,
-      last_name: last_name,
       email: email,
-      phone: phone,
       password: hashed_password,
-      acct_id: acctnum,
     });
 
     const { id, password, ...others } = createdUser.dataValues;
@@ -70,16 +54,19 @@ export const register: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Public
 export const login: RequestHandler = async (req, res, next) => {
   const { email } = req.body;
   const original_password = req.body.password;
 
   try {
     const foundUser = await User.findOne({
-      attributes: ["email"],
       where: { email: email },
     });
-
+    console.log("found data", foundUser);
     if (!foundUser) {
       return next(
         new BaseError(
@@ -102,6 +89,39 @@ export const login: RequestHandler = async (req, res, next) => {
         )
       );
     }
+
+    // Session
+    const { createdAt, updatedAt, ...session_data } = foundUser.dataValues;
+    console.log("This is the session data going to the session", session_data);
+
+    const new_session = {
+      id: session_data.id.toString(),
+      acct_id: session_data.acct_id,
+      email: session_data.email,
+      password: session_data.password,
+    };
+    console.log("This is the new session...", new_session);
+
+    req.session.user = new_session;
+
+    // added this 30th May 2023
+    req.session.save(function (err) {
+      if (err) return next(err);
+    });
+
+    const { id, password, ...others } = foundUser.dataValues;
+    // const authorities = [];
+    // const userRoles = await foundUser.getRoles();
+    // console.log(userRoles);
+    // for (let i = 0; i < userRoles.length; i++) {
+    //   authorities.push("ROLE_" + userRoles[i].name.toUpperCase());
+    // }
+
+    res.status(httpStatusCodes.OK).json({
+      status: "success",
+      msg: "You are logged in",
+      data: { ...others },
+    });
   } catch (error: any) {
     if (!error.statusCode) {
       error.statusCode = httpStatusCodes.INTERNAL_SERVER;
@@ -109,4 +129,15 @@ export const login: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
-export const logout: RequestHandler = (req, res, next) => {};
+export const logout: RequestHandler = (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return next(new BaseError("Logout error!", httpStatusCodes.UNAUTHORIZED));
+    }
+    console.log("Logout successful!");
+    res.status(200).json({
+      status: "success",
+      msg: "Logout successful!",
+    });
+  });
+};

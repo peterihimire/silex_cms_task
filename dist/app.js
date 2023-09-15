@@ -82,7 +82,7 @@ app.use((0, cors_1.default)(corsOptions));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 app.set("trust proxy", 1);
-app.use("/api/ecommerce/v1/auth", (0, express_session_1.default)(sessionOptions), auth_route_1.default);
+app.use("/api/silex_task/v1/auth", (0, express_session_1.default)(sessionOptions), auth_route_1.default);
 app.use("/api/silex_task/v1/tests", test_route_1.default);
 app.use(error_handler_1.unknownRoute);
 app.use(error_handler_1.logErrorMiddleware);

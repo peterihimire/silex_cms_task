@@ -1,26 +1,27 @@
-import { Sequelize, DataTypes } from "sequelize";
+import { Sequelize, Model, DataTypes } from "sequelize";
+
+interface UserAttributes {
+  id: number;
+  acct_id: string;
+  email: string;
+  password: string;
+}
+
+interface UserModel extends Model<UserAttributes>, UserAttributes {}
 
 export const User = (sequelize: Sequelize, Sequelize: any) => {
-  const User = sequelize.define("user", {
+  const User = sequelize.define<UserModel>("user", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
     },
-    uuid: {
+    acct_id: {
       type: DataTypes.UUID,
       defaultValue: Sequelize.UUIDV4,
       allowNull: false,
       unique: true,
-    },
-    acct_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,

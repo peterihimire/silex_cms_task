@@ -10,19 +10,11 @@ const User = (sequelize, Sequelize) => {
             allowNull: false,
             primaryKey: true,
         },
-        uuid: {
+        acct_id: {
             type: sequelize_1.DataTypes.UUID,
             defaultValue: Sequelize.UUIDV4,
             allowNull: false,
             unique: true,
-        },
-        acct_id: {
-            type: sequelize_1.DataTypes.STRING,
-            allowNull: false,
-        },
-        name: {
-            type: sequelize_1.DataTypes.STRING,
-            allowNull: false,
         },
         email: {
             type: sequelize_1.DataTypes.STRING,

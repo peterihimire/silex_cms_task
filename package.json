@@ -17,7 +17,7 @@
   "author": "Peter Ihimire",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^5.1.1",
     "connect-redis": "^7.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -34,6 +34,7 @@
     "url": "^0.11.3"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/bcryptjs": "^2.4.3",
     "@types/connect-redis": "^0.0.21",
     "@types/cookie-parser": "^1.4.4",
