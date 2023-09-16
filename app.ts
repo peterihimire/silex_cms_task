@@ -6,6 +6,11 @@ import * as redis from "redis";
 import RedisStore from "connect-redis";
 
 import authRoute from "./src/routes/auth-route";
+import dashboardRoute from "./src/routes/dashboard-route";
+import flipboxRoute from "./src/routes/flipbox-route";
+import logoRoute from "./src/routes/logo-route";
+import menuRoute from "./src/routes/menu-route";
+import sliderRoute from "./src/routes/slider-route";
 import testRoute from "./src/routes/test-route";
 import {
   logErrorMiddleware,
@@ -82,6 +87,15 @@ app.use(express.json());
 
 app.set("trust proxy", 1);
 app.use("/api/silex_task/v1/auth", session(sessionOptions), authRoute);
+app.use(
+  "/api/silex_task/v1/dashboards",
+  session(sessionOptions),
+  dashboardRoute
+);
+app.use("/api/silex_task/v1/flipboxes", session(sessionOptions), flipboxRoute);
+app.use("/api/silex_task/v1/logos", session(sessionOptions), logoRoute);
+app.use("/api/silex_task/v1/menus", session(sessionOptions), menuRoute);
+app.use("/api/silex_task/v1/sliders", session(sessionOptions), sliderRoute);
 app.use("/api/silex_task/v1/tests", testRoute);
 
 app.use(unknownRoute);

@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.logout = exports.login = exports.register = void 0;
 const http_status_codes_1 = require("../utils/http-status-codes");
 const base_error_1 = __importDefault(require("../utils/base-error"));
-const models_1 = __importDefault(require("../models"));
+// import db from "../models";
+const models_1 = __importDefault(require("../database/models"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -104,6 +105,9 @@ const login = async (req, res, next) => {
     }
 };
 exports.login = login;
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
 const logout = (req, res, next) => {
     req.session.destroy((err) => {
         if (err) {

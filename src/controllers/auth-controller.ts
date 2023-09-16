@@ -1,7 +1,8 @@
 import { RequestHandler } from "express";
 import { httpStatusCodes } from "../utils/http-status-codes";
 import BaseError from "../utils/base-error";
-import db from "../models";
+// import db from "../models";
+import db from "../database/models";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();
@@ -129,6 +130,10 @@ export const login: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
 export const logout: RequestHandler = (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {

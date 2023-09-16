@@ -30,7 +30,7 @@ const db = {
     sequelize,
     users: (0, User_1.User)(sequelize, sequelize_1.Sequelize),
     dashboards: (0, Dashboard_1.Dashboard)(sequelize, sequelize_1.Sequelize),
-    flipboxs: (0, Flipbox_1.Flipbox)(sequelize, sequelize_1.Sequelize),
+    flipboxes: (0, Flipbox_1.Flipbox)(sequelize, sequelize_1.Sequelize),
     logos: (0, Logo_1.Logo)(sequelize, sequelize_1.Sequelize),
     menus: (0, Menu_1.Menu)(sequelize, sequelize_1.Sequelize),
     sliders: (0, Slider_1.Slider)(sequelize, sequelize_1.Sequelize),
