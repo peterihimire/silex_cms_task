@@ -11,7 +11,7 @@ const models_1 = __importDefault(require("../database/models"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const User = models_1.default.users;
+const User = models_1.default.User;
 // @route POST api/auth/login
 // @desc Login into account
 // @access Public

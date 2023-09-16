@@ -10,11 +10,11 @@ const base_error_1 = __importDefault(require("../utils/base-error"));
 const models_1 = __importDefault(require("../database/models"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const Dashboard = models_1.default.dashboards;
-const Flipbox = models_1.default.flipboxes;
-const Logo = models_1.default.logos;
-const Menu = models_1.default.menus;
-const Slider = models_1.default.sliders;
+const Dashboard = models_1.default.Dashboard;
+const Flipbox = models_1.default.Flipbox;
+const Logo = models_1.default.Logo;
+const Menu = models_1.default.Menu;
+const Slider = models_1.default.Slider;
 // @route POST api/auth/login
 // @desc Login into account
 // @access Private
@@ -63,6 +63,7 @@ const get_dashboard = async (req, res, next) => {
             include: [
                 {
                     model: Flipbox,
+                    as: "flipboxes",
                     // include: [
                     //   {
                     //     model: Instance,
@@ -72,9 +73,9 @@ const get_dashboard = async (req, res, next) => {
                     //   },
                     // ],
                 },
-                { model: Logo },
-                { model: Menu },
-                { model: Slider },
+                { model: Logo, as: "logos" },
+                { model: Menu, as: "menus" },
+                { model: Slider, as: "sliders" },
             ],
         });
         if (!foundDashboard) {

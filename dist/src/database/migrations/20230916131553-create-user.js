@@ -22,12 +22,12 @@ module.exports = {
             },
             createdAt: {
                 allowNull: false,
-                // defaultValue: new Date(),
+                defaultValue: new Date(),
                 type: sequelize_1.DataTypes.DATE,
             },
             updatedAt: {
                 allowNull: false,
-                // defaultValue: new Date(),
+                defaultValue: new Date(),
                 type: sequelize_1.DataTypes.DATE,
             },
         });

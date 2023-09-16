@@ -5,11 +5,11 @@ import BaseError from "../utils/base-error";
 import db from "../database/models";
 import dotenv from "dotenv";
 dotenv.config();
-const Dashboard = db.dashboards;
-const Flipbox = db.flipboxes;
-const Logo = db.logos;
-const Menu = db.menus;
-const Slider = db.sliders;
+const Dashboard = db.Dashboard;
+const Flipbox = db.Flipbox;
+const Logo = db.Logo;
+const Menu = db.Menu;
+const Slider = db.Slider;
 
 // @route POST api/auth/login
 // @desc Login into account
@@ -66,6 +66,7 @@ export const get_dashboard: RequestHandler = async (req, res, next) => {
       include: [
         {
           model: Flipbox,
+          as: "flipboxes",
           // include: [
           //   {
           //     model: Instance,
@@ -75,9 +76,9 @@ export const get_dashboard: RequestHandler = async (req, res, next) => {
           //   },
           // ],
         },
-        { model: Logo },
-        { model: Menu },
-        { model: Slider },
+        { model: Logo, as: "logos" },
+        { model: Menu, as: "menus" },
+        { model: Slider, as: "sliders" },
       ],
     });
 

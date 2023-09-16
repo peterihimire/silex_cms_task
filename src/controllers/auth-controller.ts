@@ -6,7 +6,7 @@ import db from "../database/models";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();
-const User = db.users;
+const User = db.User;
 
 // @route POST api/auth/login
 // @desc Login into account

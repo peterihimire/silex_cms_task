@@ -5,7 +5,7 @@ import BaseError from "../utils/base-error";
 import db from "../database/models";
 import dotenv from "dotenv";
 dotenv.config();
-const Slider = db.sliders;
+const Slider = db.Slider;
 
 // @route POST api/auth/login
 // @desc Login into account

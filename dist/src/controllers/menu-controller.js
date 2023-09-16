@@ -10,7 +10,7 @@ const base_error_1 = __importDefault(require("../utils/base-error"));
 const models_1 = __importDefault(require("../database/models"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const Menu = models_1.default.menus;
+const Menu = models_1.default.Menu;
 // @route POST api/auth/login
 // @desc Login into account
 // @access Private

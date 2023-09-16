@@ -10,7 +10,7 @@ const base_error_1 = __importDefault(require("../utils/base-error"));
 const models_1 = __importDefault(require("../database/models"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const Slider = models_1.default.sliders;
+const Slider = models_1.default.Slider;
 // @route POST api/auth/login
 // @desc Login into account
 // @access Private

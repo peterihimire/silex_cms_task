@@ -52,7 +52,12 @@ module.exports = (sequelize: any, DataTypes: any) => {
   }
   Dashboard.init(
     {
-      dash_id: DataTypes.STRING,
+      dash_id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+        unique: true,
+      },
       name: DataTypes.STRING,
     },
     {

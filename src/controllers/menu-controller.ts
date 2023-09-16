@@ -6,7 +6,7 @@ import db from "../database/models";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();
-const Menu = db.menus;
+const Menu = db.Menu;
 
 // @route POST api/auth/login
 // @desc Login into account
