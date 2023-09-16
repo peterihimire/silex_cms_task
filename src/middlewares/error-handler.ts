@@ -1,3 +1,4 @@
+import fs from "fs";
 import express, {
   Request,
   Response,
@@ -30,6 +31,13 @@ export const logErrorMiddleware: ErrorRequestHandler = (
 export const returnError: ErrorRequestHandler = (err, req, res, next) => {
   if (res.headersSent) {
     return next(err);
+  }
+
+  if (req.file) {
+    fs.unlink(req.file.path, (err) => {
+      console.log("File upload error, reverting...", err);
+      return next(err);
+    });
   }
 
   res.status(err.code || 500);

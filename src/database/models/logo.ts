@@ -5,6 +5,7 @@ interface LogoAttributes {
   name: string;
   width: string;
   height: string;
+  position: string;
   img_url: string;
 }
 
@@ -13,6 +14,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     name!: string;
     width!: string;
     height!: string;
+    position!: string;
     img_url!: string;
 
     /**
@@ -22,10 +24,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
      */
     static associate(models: any) {
       // define association here
-       Logo.belongsTo(models.Dashboard, {
-         as: "dashboard",
-         foreignKey: "dashboardId",
-       });
+      Logo.belongsTo(models.Dashboard, {
+        as: "dashboard",
+        foreignKey: "dashboardId",
+      });
     }
   }
   Logo.init(
@@ -33,6 +35,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       name: DataTypes.STRING,
       width: DataTypes.STRING,
       height: DataTypes.STRING,
+      position: DataTypes.STRING,
       img_url: DataTypes.STRING,
     },
     {

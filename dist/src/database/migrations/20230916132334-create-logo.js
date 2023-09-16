@@ -20,6 +20,9 @@ module.exports = {
             height: {
                 type: sequelize_1.DataTypes.STRING,
             },
+            position: {
+                type: sequelize_1.DataTypes.STRING,
+            },
             img_url: {
                 type: sequelize_1.DataTypes.STRING,
             },

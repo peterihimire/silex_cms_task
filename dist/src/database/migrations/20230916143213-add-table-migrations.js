@@ -8,10 +8,12 @@ module.exports = {
             await queryInterface.createTable("flipbox_categories", {
                 createdAt: {
                     allowNull: false,
+                    defaultValue: new Date(),
                     type: sequelize_1.DataTypes.DATE,
                 },
                 updatedAt: {
                     allowNull: false,
+                    defaultValue: new Date(),
                     type: sequelize_1.DataTypes.DATE,
                 },
                 flipboxId: {

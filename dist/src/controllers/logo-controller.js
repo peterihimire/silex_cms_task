@@ -15,13 +15,19 @@ const Logo = models_1.default.Logo;
 // @desc Login into account
 // @access Private
 const create_logo = async (req, res, next) => {
-    const { width, height, img_url, name, dashboard_id } = req.body;
+    var _a;
+    const { width, height, name, dash_id, position } = req.body;
     try {
+        const img_url = (_a = req === null || req === void 0 ? void 0 : req.file) === null || _a === void 0 ? void 0 : _a.path;
         console.log("This is ...", Logo);
         const foundLogo = await Logo.findOne({
             attributes: ["name"],
             where: { name: name },
         });
+        // LOGO NOT OPTIONAL
+        if (!req.file) {
+            next(new base_error_1.default("No logo provided!", http_status_codes_1.httpStatusCodes.BAD_REQUEST));
+        }
         if (foundLogo) {
             return next(new base_error_1.default("Logo name already exist!", http_status_codes_1.httpStatusCodes.CONFLICT));
         }
@@ -31,7 +37,8 @@ const create_logo = async (req, res, next) => {
             width: width,
             height: height,
             img_url: img_url,
-            dashboardId: dashboard_id,
+            position: position,
+            dashboardId: dash_id,
         });
         const { id, ...others } = createdLogo.dataValues;
         res.status(http_status_codes_1.httpStatusCodes.OK).json({

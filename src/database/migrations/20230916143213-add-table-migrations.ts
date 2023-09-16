@@ -11,10 +11,12 @@ module.exports = {
         {
           createdAt: {
             allowNull: false,
+            defaultValue: new Date(),
             type: DataTypes.DATE,
           },
           updatedAt: {
             allowNull: false,
+            defaultValue: new Date(),
             type: DataTypes.DATE,
           },
           flipboxId: {

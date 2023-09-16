@@ -22,6 +22,9 @@ module.exports = {
         height: {
           type: DataTypes.STRING,
         },
+        position: {
+          type: DataTypes.STRING,
+        },
         img_url: {
           type: DataTypes.STRING,
         },

@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.unknownRoute = exports.returnError = exports.logErrorMiddleware = exports.logError = void 0;
+const fs_1 = __importDefault(require("fs"));
 const http_status_codes_1 = require("../utils/http-status-codes");
 const base_error_1 = __importDefault(require("../utils/base-error"));
 // interface LogError {
@@ -22,6 +23,12 @@ exports.logErrorMiddleware = logErrorMiddleware;
 const returnError = (err, req, res, next) => {
     if (res.headersSent) {
         return next(err);
+    }
+    if (req.file) {
+        fs_1.default.unlink(req.file.path, (err) => {
+            console.log("File upload error, reverting...", err);
+            return next(err);
+        });
     }
     res.status(err.code || 500);
     res.json({
