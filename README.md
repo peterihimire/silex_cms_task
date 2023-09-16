@@ -31,7 +31,7 @@ This secures the JWToken and prevents Cross Site Scripting (XSS) attack. Because
 - "dotenv": "^16.3.1",
 - "express": "^4.18.2",
 - "express-session": "^1.17.3",
-- "jsonwebtoken": "^9.0.1",
+- "multer": "^9.0.1",
 - "postgresql": "^5.7.0",
 - "sequelize": "^7.4.3",
 - "jest": "^29.6.3",

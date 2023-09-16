@@ -57,3 +57,138 @@ export const create_logo: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
+export const get_logo: RequestHandler = async (req, res, next) => {
+  const { l_id } = req.params;
+
+  try {
+    console.log("This is ...", Logo);
+    const foundLogo = await Logo.findOne({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      where: { id: l_id },
+    });
+
+    if (!foundLogo) {
+      return next(
+        new BaseError("Logo does not exist!", httpStatusCodes.CONFLICT)
+      );
+    }
+
+    res.status(httpStatusCodes.OK).json({
+      status: "success",
+      msg: "Logo info!.",
+      data: foundLogo,
+    });
+  } catch (error: any) {
+    if (!error.statusCode) {
+      error.statusCode = httpStatusCodes.INTERNAL_SERVER;
+    }
+    next(error);
+  }
+};
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
+export const get_all_logos: RequestHandler = async (req, res, next) => {
+  try {
+    console.log("This is ...", Logo);
+    const foundLogos = await Logo.findAll({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+
+    if (!foundLogos) {
+      return next(
+        new BaseError("Categories does not exist!", httpStatusCodes.CONFLICT)
+      );
+    }
+
+    res.status(httpStatusCodes.OK).json({
+      status: "success",
+      msg: "All logos!.",
+      data: foundLogos,
+    });
+  } catch (error: any) {
+    if (!error.statusCode) {
+      error.statusCode = httpStatusCodes.INTERNAL_SERVER;
+    }
+    next(error);
+  }
+};
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
+export const update_logo: RequestHandler = async (req, res, next) => {
+  const { name, width, height, position } = req.body;
+  const { l_id } = req.params;
+
+  try {
+    const img_url = req?.file?.path;
+    console.log("This is ...", Logo);
+    const foundLogo = await Logo.findOne({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      where: { id: l_id },
+    });
+
+    if (!foundLogo) {
+      return next(
+        new BaseError("Logo does not exist!", httpStatusCodes.CONFLICT)
+      );
+    }
+
+    const updatedLogo = await foundLogo;
+    updatedLogo.name = name ? name : foundLogo.name;
+    updatedLogo.width = width ? width : foundLogo.width;
+    updatedLogo.height = height ? height : foundLogo.height;
+    updatedLogo.position = position ? position : foundLogo.position;
+    updatedLogo.img_url = img_url ? img_url : foundLogo.img_url;
+    updatedLogo.save();
+
+    res.status(httpStatusCodes.OK).json({
+      status: "success",
+      msg: "Logo updated!.",
+      data: updatedLogo,
+    });
+  } catch (error: any) {
+    if (!error.statusCode) {
+      error.statusCode = httpStatusCodes.INTERNAL_SERVER;
+    }
+    next(error);
+  }
+};
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
+export const delete_logo: RequestHandler = async (req, res, next) => {
+  const { l_id } = req.params;
+
+  try {
+    console.log("This is ...", Logo);
+    const foundLogo = await Logo.findOne({
+      where: { id: l_id },
+    });
+
+    if (!foundLogo) {
+      return next(
+        new BaseError("Logo does not exist!", httpStatusCodes.CONFLICT)
+      );
+    }
+
+    await foundLogo.destroy();
+
+    res.status(httpStatusCodes.OK).json({
+      status: "success",
+      msg: "Logo deleted!.",
+    });
+  } catch (error: any) {
+    if (!error.statusCode) {
+      error.statusCode = httpStatusCodes.INTERNAL_SERVER;
+    }
+    next(error);
+  }
+};

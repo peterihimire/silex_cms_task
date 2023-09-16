@@ -4,4 +4,8 @@ const express_1 = require("express");
 const category_controller_1 = require("../controllers/category-controller");
 const router = (0, express_1.Router)();
 router.post("/create", category_controller_1.create_category);
+router.get("/get_category/:cat_id", category_controller_1.get_category);
+router.get("/get_all_categories", category_controller_1.get_all_categories);
+router.patch("/update/:cat_id", category_controller_1.update_category);
+router.delete("/delete/:cat_id", category_controller_1.delete_category);
 exports.default = router;

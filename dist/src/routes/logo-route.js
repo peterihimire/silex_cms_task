@@ -4,4 +4,8 @@ const express_1 = require("express");
 const logo_controller_1 = require("../controllers/logo-controller");
 const router = (0, express_1.Router)();
 router.post("/create", logo_controller_1.create_logo);
+router.get("/get_logo/:l_id", logo_controller_1.get_logo);
+router.get("/get_all_logos", logo_controller_1.get_all_logos);
+router.patch("/update/:l_id", logo_controller_1.update_logo);
+router.delete("/delete/:l_id", logo_controller_1.delete_logo);
 exports.default = router;
