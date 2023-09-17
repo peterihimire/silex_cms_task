@@ -98,7 +98,7 @@ let redisStore = new connect_redis_1.default({
     prefix: "ecommerce_store",
 });
 const corsOptions = {
-    origin: ["*", "http://localhost:3000"],
+    origin: [process.env.CORS_ORIGIN],
     methods: ["*"],
     allowedHeaders: ["*"],
     credentials: true,

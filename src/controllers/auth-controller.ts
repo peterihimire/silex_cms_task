@@ -141,7 +141,7 @@ export const logout: RequestHandler = (req, res, next) => {
     console.log("Logout successful!");
     res.status(200).json({
       status: "success",
-      msg: "Logout successful!",
+      msg: "You are logged out!",
     });
   });
 };
