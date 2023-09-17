@@ -159,7 +159,7 @@ To test the API endpoints you can use postman or insomnia, you can add to your g
 
 - **Dashboard Endpoint:** This is a protected route only authenticated and authorized users can access it. You will need to be authenticated to access this route. View the [postman doc](https://documenter.getpostman.com/view/12340633/2s9YC7SrQw) to see all the endpoints and examples on how to access and work with them.
 
-  <!-- ![Cookie](https://res.cloudinary.com/dymhdpka1/image/upload/v1694963431/Screenshot_2023-09-17_at_3.47.48_PM_za9rd8.png) -->
+  ![Cookie](https://res.cloudinary.com/dymhdpka1/image/upload/v1694963431/Screenshot_2023-09-17_at_3.47.48_PM_za9rd8.png)
 
   ```js
   {
@@ -175,7 +175,7 @@ To test the API endpoints you can use postman or insomnia, you can add to your g
   ```js
     {
       "status": "success",
-      "msg": "You are logged out!"
+      "msg": "Logout successful!",
     }
   ```
 
@@ -193,7 +193,7 @@ Unit test with `Jest` was integrated, to test the app, run $`npm run test`
 
 This project is licensed under the terms of the **MIT** license. -->
 
---- -->
+<!-- --- --> -->
 
 ## Postman Documentation
 
