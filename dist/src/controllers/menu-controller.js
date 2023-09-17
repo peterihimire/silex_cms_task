@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.delete_menu = exports.update_menu = exports.get_all_menus = exports.get_menu = exports.create_menu = void 0;
 const http_status_codes_1 = require("../utils/http-status-codes");
 const base_error_1 = __importDefault(require("../utils/base-error"));
-// import db from "../models";
 const models_1 = __importDefault(require("../database/models"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();

@@ -13,7 +13,6 @@ app_1.default.listen(PORT, HOST, () => {
 const connectWithRetry = () => {
     index_1.default.sequelize
         .sync()
-        // .sync({ force: true })
         .then(() => console.log("PostgreSQL connection was successful..."))
         .catch((e) => {
         console.log("Failed to sync db: " + e.message);

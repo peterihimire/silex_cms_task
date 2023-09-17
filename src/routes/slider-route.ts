@@ -8,10 +8,12 @@ import {
 } from "../controllers/slider-controller";
 const router = Router();
 
-router.post("/create", create_slider);
-router.get("/get_slider/:s_id", get_slider);
-router.get("/get_all_sliders", get_all_sliders);
-router.patch("/update/:s_id", update_slider);
-router.delete("/delete/:s_id", delete_slider);
+import { verifySessionAndAuthorization } from "../middlewares/verify-session";
+
+router.post("/create",verifySessionAndAuthorization, create_slider);
+router.get("/get_slider/:s_id",verifySessionAndAuthorization, get_slider);
+router.get("/get_all_sliders",verifySessionAndAuthorization, get_all_sliders);
+router.patch("/update/:s_id",verifySessionAndAuthorization, update_slider);
+router.delete("/delete/:s_id",verifySessionAndAuthorization, delete_slider);
 
 export default router;

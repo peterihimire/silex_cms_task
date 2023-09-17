@@ -1,7 +1,6 @@
 import { RequestHandler } from "express";
 import { httpStatusCodes } from "../utils/http-status-codes";
 import BaseError from "../utils/base-error";
-// import db from "../models";
 import db from "../database/models";
 import dotenv from "dotenv";
 dotenv.config();
@@ -17,7 +16,7 @@ const SubMenu = db.SubMenu;
 // @desc Login into account
 // @access Private
 export const create_dashboard: RequestHandler = async (req, res, next) => {
-  const { name } = req.body;
+  const { name, user_id } = req.body;
 
   console.log("thia is ...", Dashboard);
   try {
@@ -36,6 +35,7 @@ export const create_dashboard: RequestHandler = async (req, res, next) => {
     // CREATE NEW ACCOUNT
     const createdDashboard = await Dashboard.create({
       name: name,
+      userId: user_id,
     });
 
     const { id, createdAt, updatedAt, ...others } = createdDashboard.dataValues;
@@ -100,10 +100,23 @@ export const get_dashboard: RequestHandler = async (req, res, next) => {
       );
     }
 
+    const dashboard = foundDashboard.dataValues;
+
+    console.log("This is ...", Category);
+    const foundCategories = await Category.findAll({
+      attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+    });
+
+    if (!foundCategories) {
+      return next(
+        new BaseError("Categories does not exist!", httpStatusCodes.CONFLICT)
+      );
+    }
+
     res.status(httpStatusCodes.OK).json({
       status: "success",
       msg: "Dashboard info!.",
-      data: foundDashboard,
+      data: { ...dashboard, flipbox_cat: foundCategories },
     });
   } catch (error: any) {
     if (!error.statusCode) {

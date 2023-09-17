@@ -1,7 +1,6 @@
 import { RequestHandler } from "express";
 import { httpStatusCodes } from "../utils/http-status-codes";
 import BaseError from "../utils/base-error";
-// import db from "../models";
 import db from "../database/models";
 const Op = db.Sequelize.Op;
 import dotenv from "dotenv";

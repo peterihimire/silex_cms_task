@@ -8,10 +8,24 @@ import {
 } from "../controllers/category-controller";
 const router = Router();
 
-router.post("/create", create_category);
-router.get("/get_category/:cat_id", get_category);
-router.get("/get_all_categories", get_all_categories);
-router.patch("/update/:cat_id", update_category);
-router.delete("/delete/:cat_id", delete_category);
+import { verifySessionAndAuthorization } from "../middlewares/verify-session";
+
+router.post("/create", verifySessionAndAuthorization, create_category);
+router.get(
+  "/get_category/:cat_id",
+  verifySessionAndAuthorization,
+  get_category
+);
+router.get(
+  "/get_all_categories",
+  verifySessionAndAuthorization,
+  get_all_categories
+);
+router.patch("/update/:cat_id", verifySessionAndAuthorization, update_category);
+router.delete(
+  "/delete/:cat_id",
+  verifySessionAndAuthorization,
+  delete_category
+);
 
 export default router;

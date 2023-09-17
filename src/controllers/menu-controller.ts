@@ -1,9 +1,7 @@
 import { RequestHandler } from "express";
 import { httpStatusCodes } from "../utils/http-status-codes";
 import BaseError from "../utils/base-error";
-// import db from "../models";
 import db from "../database/models";
-import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();
 const Menu = db.Menu;

@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.get_dashboard = exports.create_dashboard = void 0;
 const http_status_codes_1 = require("../utils/http-status-codes");
 const base_error_1 = __importDefault(require("../utils/base-error"));
-// import db from "../models";
 const models_1 = __importDefault(require("../database/models"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -21,7 +20,7 @@ const SubMenu = models_1.default.SubMenu;
 // @desc Login into account
 // @access Private
 const create_dashboard = async (req, res, next) => {
-    const { name } = req.body;
+    const { name, user_id } = req.body;
     console.log("thia is ...", Dashboard);
     try {
         console.log("This is ...", Dashboard);
@@ -35,6 +34,7 @@ const create_dashboard = async (req, res, next) => {
         // CREATE NEW ACCOUNT
         const createdDashboard = await Dashboard.create({
             name: name,
+            userId: user_id,
         });
         const { id, createdAt, updatedAt, ...others } = createdDashboard.dataValues;
         res.status(http_status_codes_1.httpStatusCodes.OK).json({
@@ -93,10 +93,18 @@ const get_dashboard = async (req, res, next) => {
         if (!foundDashboard) {
             return next(new base_error_1.default("Dashboard does not exist!", http_status_codes_1.httpStatusCodes.CONFLICT));
         }
+        const dashboard = foundDashboard.dataValues;
+        console.log("This is ...", Category);
+        const foundCategories = await Category.findAll({
+            attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+        });
+        if (!foundCategories) {
+            return next(new base_error_1.default("Categories does not exist!", http_status_codes_1.httpStatusCodes.CONFLICT));
+        }
         res.status(http_status_codes_1.httpStatusCodes.OK).json({
             status: "success",
             msg: "Dashboard info!.",
-            data: foundDashboard,
+            data: { ...dashboard, flipbox_cat: foundCategories },
         });
     }
     catch (error) {

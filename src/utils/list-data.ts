@@ -6,3 +6,18 @@ export const DASHBOARDS = [
     dash_id: "6de26966-0f0b-41f0-8fdb-79772aff1133",
   },
 ];
+
+export const CATEGORIES = [
+  {
+    name: "News",
+  },
+  {
+    name: "Products",
+  },
+  {
+    name: "Politics",
+  },
+  {
+    name: "School",
+  },
+];
