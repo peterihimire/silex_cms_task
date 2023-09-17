@@ -193,8 +193,8 @@ Unit test with `Jest` was integrated, to test the app, run $`npm run test`
 
 This project is licensed under the terms of the **MIT** license. -->
 
-<!-- --- --> -->
+<!-- --- -->
 
 ## Postman Documentation
 
-Click this [link](https://documenter.getpostman.com/view/12340633/2s9YC7SrQw) to access the postman documentation of this Backend API task.
+Click this [highlighted link](https://documenter.getpostman.com/view/12340633/2s9YC7SrQw) to access the postman documentation of this Backend API task.
