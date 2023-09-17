@@ -141,11 +141,11 @@ export const update_logo: RequestHandler = async (req, res, next) => {
     }
 
     const updatedLogo = await foundLogo;
-    updatedLogo.name = name ? name : foundLogo.name;
-    updatedLogo.width = width ? width : foundLogo.width;
-    updatedLogo.height = height ? height : foundLogo.height;
-    updatedLogo.position = position ? position : foundLogo.position;
-    updatedLogo.img_url = img_url ? img_url : foundLogo.img_url;
+    updatedLogo.name = name;
+    updatedLogo.width = width;
+    updatedLogo.height = height;
+    updatedLogo.position = position;
+    updatedLogo.img_url = img_url;
     updatedLogo.save();
 
     res.status(httpStatusCodes.OK).json({

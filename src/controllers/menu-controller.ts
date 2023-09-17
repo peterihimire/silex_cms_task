@@ -130,6 +130,7 @@ export const get_all_menus: RequestHandler = async (req, res, next) => {
 // @access Private
 export const update_menu: RequestHandler = async (req, res, next) => {
   const { has_sub_menu, slug, link, title } = req.body;
+  console.log(has_sub_menu, "This is the contnt sub-menu");
   const { m_id } = req.params;
 
   try {
@@ -152,12 +153,10 @@ export const update_menu: RequestHandler = async (req, res, next) => {
     }
 
     const updatedMenu = await foundMenu;
-    updatedMenu.title = title ? title : foundMenu.title;
-    updatedMenu.link = link ? link : foundMenu.link;
-    updatedMenu.has_sub_menu = has_sub_menu
-      ? has_sub_menu
-      : foundMenu.has_sub_menu;
-    updatedMenu.slug = slug ? slug : foundMenu.slug;
+    updatedMenu.title = title;
+    updatedMenu.link = link;
+    updatedMenu.has_sub_menu = has_sub_menu;
+    updatedMenu.slug = slug;
 
     updatedMenu.save();
 

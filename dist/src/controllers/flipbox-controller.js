@@ -165,8 +165,8 @@ const update_flipbox = async (req, res, next) => {
             return next(new base_error_1.default("Flipbox does not exist!", http_status_codes_1.httpStatusCodes.CONFLICT));
         }
         const updatedFlipbox = await foundFlipbox;
-        updatedFlipbox.title = title ? title : foundFlipbox.title;
-        updatedFlipbox.desc = desc ? desc : foundFlipbox.desc;
+        updatedFlipbox.title = title;
+        updatedFlipbox.desc = desc;
         updatedFlipbox.save();
         const categories = [];
         // FOR SELECTED COUNTRIES

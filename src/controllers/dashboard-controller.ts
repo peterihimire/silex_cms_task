@@ -10,6 +10,8 @@ const Flipbox = db.Flipbox;
 const Logo = db.Logo;
 const Menu = db.Menu;
 const Slider = db.Slider;
+const Category = db.Category;
+const SubMenu = db.SubMenu;
 
 // @route POST api/auth/login
 // @desc Login into account
@@ -67,17 +69,27 @@ export const get_dashboard: RequestHandler = async (req, res, next) => {
         {
           model: Flipbox,
           as: "flipboxes",
-          // include: [
-          //   {
-          //     model: Instance,
-          //   },
-          //   {
-          //     model: Channel,
-          //   },
-          // ],
+          include: [
+            {
+              model: Category,
+              as: "categories",
+              through: {
+                attributes: [],
+              },
+            },
+          ],
         },
         { model: Logo, as: "logos" },
-        { model: Menu, as: "menus" },
+        {
+          model: Menu,
+          as: "menus",
+          include: [
+            {
+              model: SubMenu,
+              as: "submenus",
+            },
+          ],
+        },
         { model: Slider, as: "sliders" },
       ],
     });

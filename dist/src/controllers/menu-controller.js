@@ -120,6 +120,7 @@ exports.get_all_menus = get_all_menus;
 // @access Private
 const update_menu = async (req, res, next) => {
     const { has_sub_menu, slug, link, title } = req.body;
+    console.log(has_sub_menu, "This is the contnt sub-menu");
     const { m_id } = req.params;
     try {
         console.log("This is ...", Menu);
@@ -137,12 +138,10 @@ const update_menu = async (req, res, next) => {
             return next(new base_error_1.default("Menu does not exist!", http_status_codes_1.httpStatusCodes.CONFLICT));
         }
         const updatedMenu = await foundMenu;
-        updatedMenu.title = title ? title : foundMenu.title;
-        updatedMenu.link = link ? link : foundMenu.link;
-        updatedMenu.has_sub_menu = has_sub_menu
-            ? has_sub_menu
-            : foundMenu.has_sub_menu;
-        updatedMenu.slug = slug ? slug : foundMenu.slug;
+        updatedMenu.title = title;
+        updatedMenu.link = link;
+        updatedMenu.has_sub_menu = has_sub_menu;
+        updatedMenu.slug = slug;
         updatedMenu.save();
         res.status(http_status_codes_1.httpStatusCodes.OK).json({
             status: "success",

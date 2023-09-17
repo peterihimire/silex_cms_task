@@ -117,9 +117,9 @@ const update_sub_menu = async (req, res, next) => {
             return next(new base_error_1.default("SubMenu does not exist!", http_status_codes_1.httpStatusCodes.CONFLICT));
         }
         const updatedSubMenu = await foundSubMenu;
-        updatedSubMenu.title = title ? title : foundSubMenu.title;
-        updatedSubMenu.link = link ? link : foundSubMenu.link;
-        updatedSubMenu.slug = slug ? slug : foundSubMenu.slug;
+        updatedSubMenu.title = title;
+        updatedSubMenu.link = link;
+        updatedSubMenu.slug = slug;
         updatedSubMenu.save();
         res.status(http_status_codes_1.httpStatusCodes.OK).json({
             status: "success",

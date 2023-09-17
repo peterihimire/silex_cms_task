@@ -128,7 +128,7 @@ export const update_category: RequestHandler = async (req, res, next) => {
     }
 
     const updatedCategory = await foundCategory;
-    updatedCategory.name = name ? name : foundCategory.name;
+    updatedCategory.name = name;
     updatedCategory.save();
 
     res.status(httpStatusCodes.OK).json({

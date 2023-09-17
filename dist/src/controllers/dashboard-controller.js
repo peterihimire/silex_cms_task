@@ -15,6 +15,8 @@ const Flipbox = models_1.default.Flipbox;
 const Logo = models_1.default.Logo;
 const Menu = models_1.default.Menu;
 const Slider = models_1.default.Slider;
+const Category = models_1.default.Category;
+const SubMenu = models_1.default.SubMenu;
 // @route POST api/auth/login
 // @desc Login into account
 // @access Private
@@ -64,17 +66,27 @@ const get_dashboard = async (req, res, next) => {
                 {
                     model: Flipbox,
                     as: "flipboxes",
-                    // include: [
-                    //   {
-                    //     model: Instance,
-                    //   },
-                    //   {
-                    //     model: Channel,
-                    //   },
-                    // ],
+                    include: [
+                        {
+                            model: Category,
+                            as: "categories",
+                            through: {
+                                attributes: [],
+                            },
+                        },
+                    ],
                 },
                 { model: Logo, as: "logos" },
-                { model: Menu, as: "menus" },
+                {
+                    model: Menu,
+                    as: "menus",
+                    include: [
+                        {
+                            model: SubMenu,
+                            as: "submenus",
+                        },
+                    ],
+                },
                 { model: Slider, as: "sliders" },
             ],
         });

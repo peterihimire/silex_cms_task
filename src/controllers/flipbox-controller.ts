@@ -185,8 +185,8 @@ export const update_flipbox: RequestHandler = async (req, res, next) => {
     }
 
     const updatedFlipbox = await foundFlipbox;
-    updatedFlipbox.title = title ? title : foundFlipbox.title;
-    updatedFlipbox.desc = desc ? desc : foundFlipbox.desc;
+    updatedFlipbox.title = title;
+    updatedFlipbox.desc = desc;
 
     updatedFlipbox.save();
 

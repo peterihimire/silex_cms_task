@@ -114,7 +114,7 @@ const update_category = async (req, res, next) => {
             return next(new base_error_1.default("Category does not exist!", http_status_codes_1.httpStatusCodes.CONFLICT));
         }
         const updatedCategory = await foundCategory;
-        updatedCategory.name = name ? name : foundCategory.name;
+        updatedCategory.name = name;
         updatedCategory.save();
         res.status(http_status_codes_1.httpStatusCodes.OK).json({
             status: "success",

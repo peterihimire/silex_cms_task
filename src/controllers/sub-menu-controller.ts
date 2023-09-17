@@ -131,9 +131,9 @@ export const update_sub_menu: RequestHandler = async (req, res, next) => {
     }
 
     const updatedSubMenu = await foundSubMenu;
-    updatedSubMenu.title = title ? title : foundSubMenu.title;
-    updatedSubMenu.link = link ? link : foundSubMenu.link;
-    updatedSubMenu.slug = slug ? slug : foundSubMenu.slug;
+    updatedSubMenu.title = title;
+    updatedSubMenu.link = link;
+    updatedSubMenu.slug = slug;
 
     updatedSubMenu.save();
 

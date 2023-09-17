@@ -132,10 +132,10 @@ export const update_slider: RequestHandler = async (req, res, next) => {
     }
 
     const updatedSlider = await foundSlider;
-    updatedSlider.title = title ? title : foundSlider.title;
-    updatedSlider.width = width ? width : foundSlider.width;
-    updatedSlider.height = height ? height : foundSlider.height;
-    updatedSlider.sub_title = sub_title ? sub_title : foundSlider.sub_title;
+    updatedSlider.title = title;
+    updatedSlider.width = width;
+    updatedSlider.height = height;
+    updatedSlider.sub_title = sub_title;
     updatedSlider.save();
 
     res.status(httpStatusCodes.OK).json({
