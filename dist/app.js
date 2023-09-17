@@ -133,7 +133,7 @@ app.use("/api/silex_task/v1/dashboards", (0, express_session_1.default)(sessionO
 app.use("/api/silex_task/v1/flipboxes", (0, express_session_1.default)(sessionOptions), flipbox_route_1.default);
 app.use("/api/silex_task/v1/logos", (0, express_session_1.default)(sessionOptions), logo_route_1.default);
 app.use("/api/silex_task/v1/menus", (0, express_session_1.default)(sessionOptions), menu_route_1.default);
-app.use("/api/silex_task/v1/sub_menus", (0, express_session_1.default)(sessionOptions), sub_menu_route_1.default);
+app.use("/api/silex_task/v1/sub-menus", (0, express_session_1.default)(sessionOptions), sub_menu_route_1.default);
 app.use("/api/silex_task/v1/sliders", (0, express_session_1.default)(sessionOptions), slider_route_1.default);
 app.use("/api/silex_task/v1/categories", (0, express_session_1.default)(sessionOptions), category_route_1.default);
 app.use("/api/silex_task/v1/tests", test_route_1.default);

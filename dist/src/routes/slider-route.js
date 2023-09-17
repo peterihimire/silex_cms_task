@@ -4,4 +4,8 @@ const express_1 = require("express");
 const slider_controller_1 = require("../controllers/slider-controller");
 const router = (0, express_1.Router)();
 router.post("/create", slider_controller_1.create_slider);
+router.get("/get_slider/:s_id", slider_controller_1.get_slider);
+router.get("/get_all_sliders", slider_controller_1.get_all_sliders);
+router.patch("/update/:s_id", slider_controller_1.update_slider);
+router.delete("/delete/:s_id", slider_controller_1.delete_slider);
 exports.default = router;

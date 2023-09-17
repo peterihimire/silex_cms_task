@@ -156,7 +156,7 @@ app.use(
 app.use("/api/silex_task/v1/flipboxes", session(sessionOptions), flipboxRoute);
 app.use("/api/silex_task/v1/logos", session(sessionOptions), logoRoute);
 app.use("/api/silex_task/v1/menus", session(sessionOptions), menuRoute);
-app.use("/api/silex_task/v1/sub_menus", session(sessionOptions), subMenuRoute);
+app.use("/api/silex_task/v1/sub-menus", session(sessionOptions), subMenuRoute);
 app.use("/api/silex_task/v1/sliders", session(sessionOptions), sliderRoute);
 app.use(
   "/api/silex_task/v1/categories",

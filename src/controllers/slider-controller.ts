@@ -49,3 +49,136 @@ export const create_slider: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
+export const get_slider: RequestHandler = async (req, res, next) => {
+  const { s_id } = req.params;
+
+  try {
+    console.log("This is ...", Slider);
+    const foundSlider = await Slider.findOne({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      where: { id: s_id },
+    });
+
+    if (!foundSlider) {
+      return next(
+        new BaseError("Slider does not exist!", httpStatusCodes.CONFLICT)
+      );
+    }
+
+    res.status(httpStatusCodes.OK).json({
+      status: "success",
+      msg: "Slider info!.",
+      data: foundSlider,
+    });
+  } catch (error: any) {
+    if (!error.statusCode) {
+      error.statusCode = httpStatusCodes.INTERNAL_SERVER;
+    }
+    next(error);
+  }
+};
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
+export const get_all_sliders: RequestHandler = async (req, res, next) => {
+  try {
+    console.log("This is ...", Slider);
+    const foundSliders = await Slider.findAll({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+
+    if (!foundSliders) {
+      return next(
+        new BaseError("Sliders does not exist!", httpStatusCodes.CONFLICT)
+      );
+    }
+
+    res.status(httpStatusCodes.OK).json({
+      status: "success",
+      msg: "All sliders!.",
+      data: foundSliders,
+    });
+  } catch (error: any) {
+    if (!error.statusCode) {
+      error.statusCode = httpStatusCodes.INTERNAL_SERVER;
+    }
+    next(error);
+  }
+};
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
+export const update_slider: RequestHandler = async (req, res, next) => {
+  const { width, height, sub_title, title } = req.body;
+  const { s_id } = req.params;
+
+  try {
+    console.log("This is ...", Slider);
+    const foundSlider = await Slider.findOne({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      where: { id: s_id },
+    });
+
+    if (!foundSlider) {
+      return next(
+        new BaseError("Slider does not exist!", httpStatusCodes.CONFLICT)
+      );
+    }
+
+    const updatedSlider = await foundSlider;
+    updatedSlider.title = title ? title : foundSlider.title;
+    updatedSlider.width = width ? width : foundSlider.width;
+    updatedSlider.height = height ? height : foundSlider.height;
+    updatedSlider.sub_title = sub_title ? sub_title : foundSlider.sub_title;
+    updatedSlider.save();
+
+    res.status(httpStatusCodes.OK).json({
+      status: "success",
+      msg: "Slider updated!.",
+      data: updatedSlider,
+    });
+  } catch (error: any) {
+    if (!error.statusCode) {
+      error.statusCode = httpStatusCodes.INTERNAL_SERVER;
+    }
+    next(error);
+  }
+};
+
+// @route POST api/auth/login
+// @desc Login into account
+// @access Private
+export const delete_slider: RequestHandler = async (req, res, next) => {
+  const { s_id } = req.params;
+
+  try {
+    console.log("This is ...", Slider);
+    const foundSlider = await Slider.findOne({
+      where: { id: s_id },
+    });
+
+    if (!foundSlider) {
+      return next(
+        new BaseError("Slider does not exist!", httpStatusCodes.CONFLICT)
+      );
+    }
+
+    await foundSlider.destroy();
+
+    res.status(httpStatusCodes.OK).json({
+      status: "success",
+      msg: "Slider deleted!.",
+    });
+  } catch (error: any) {
+    if (!error.statusCode) {
+      error.statusCode = httpStatusCodes.INTERNAL_SERVER;
+    }
+    next(error);
+  }
+};

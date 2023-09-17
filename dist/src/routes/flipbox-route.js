@@ -4,4 +4,8 @@ const express_1 = require("express");
 const flipbox_controller_1 = require("../controllers/flipbox-controller");
 const router = (0, express_1.Router)();
 router.post("/create", flipbox_controller_1.create_flipbox);
+router.get("/get_flipbox/:f_id", flipbox_controller_1.get_flipbox);
+router.get("/get_all_flipboxes", flipbox_controller_1.get_all_flipboxes);
+router.patch("/update/:f_id", flipbox_controller_1.update_flipbox);
+router.delete("/delete/:f_id", flipbox_controller_1.delete_flipbox);
 exports.default = router;

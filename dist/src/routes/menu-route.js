@@ -4,4 +4,8 @@ const express_1 = require("express");
 const menu_controller_1 = require("../controllers/menu-controller");
 const router = (0, express_1.Router)();
 router.post("/create", menu_controller_1.create_menu);
+router.get("/get_menu/:m_id", menu_controller_1.get_menu);
+router.get("/get_all_menus", menu_controller_1.get_all_menus);
+router.patch("/update/:m_id", menu_controller_1.update_menu);
+router.delete("/delete/:m_id", menu_controller_1.delete_menu);
 exports.default = router;
