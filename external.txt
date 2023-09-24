@@ -1,0 +1,27 @@
+password=sc37aU1dFlUiJzK6iQfKYaxme8PTccRq
+internal-db-url=postgres://silexcmstask_user:sc37aU1dFlUiJzK6iQfKYaxme8PTccRq@dpg-ck3jhtr6fquc73d0hqjg-a/silexcmstask
+external-db-url=postgres://silexcmstask_user:sc37aU1dFlUiJzK6iQfKYaxme8PTccRq@dpg-ck3jhtr6fquc73d0hqjg-a.oregon-postgres.render.com/silexcmstask
+psql-command=PGPASSWORD=sc37aU1dFlUiJzK6iQfKYaxme8PTccRq psql -h dpg-ck3jhtr6fquc73d0hqjg-a.oregon-postgres.render.com -U silexcmstask_user silexcmstask
+
+
+host-name=dpg-ck3jhtr6fquc73d0hqjg-a
+port=5432
+database=silexcmstask
+username=silexcmstask_user
+
+
+redis-internal-url=redis://red-ck3jtvnqj8ts73f6st20:6379
+
+
+
+=================================DB VERSION 2================================
+
+password=fdln9RIq3KvTpq2ONkfwZB3OCg2G98ls
+internal-database-url=postgres://peterpostgres:fdln9RIq3KvTpq2ONkfwZB3OCg2G98ls@dpg-ck3n5p36fquc73dpikug-a/silexcmsdev_k0sg
+external-database-url=postgres://peterpostgres:fdln9RIq3KvTpq2ONkfwZB3OCg2G98ls@dpg-ck3n5p36fquc73dpikug-a.oregon-postgres.render.com/silexcmsdev_k0sg
+psql-command=PGPASSWORD=fdln9RIq3KvTpq2ONkfwZB3OCg2G98ls psql -h dpg-ck3n5p36fquc73dpikug-a.oregon-postgres.render.com -U peterpostgres silexcmsdev_k0sg
+
+host-name=dpg-ck3n5p36fquc73dpikug-a
+database=silexcmsdev_k0sg
+username=peterpostgres
+port=5432
