@@ -111,9 +111,19 @@ let redisStore = new (RedisStore as any)({
 });
 
 const corsOptions = {
-  origin: [process.env.CORS_ORIGIN as string],
-  methods: ["*"],
-  allowedHeaders: ["*"],
+  // origin: [process.env.CORS_ORIGIN as string],
+  origin: [
+    process.env.CORS_ORIGIN as string,
+    "http://localhost:3000",
+    "https://localhost:3000",
+  ],
+  methods: ["GET", "PUT", "PATCH", "POST", "OPTION", "DELETE", "HEAD"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "Access-Control-Allow-Origin",
+  ],
   credentials: true,
   optionSuccessStatus: 200,
 };
