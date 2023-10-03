@@ -111,19 +111,20 @@ let redisStore = new (RedisStore as any)({
 });
 
 const corsOptions = {
-  // origin: [process.env.CORS_ORIGIN as string],
   origin: [
     // process.env.CORS_ORIGIN as string,
     "https://silexcms.onrender.com",
     "http://localhost:3000",
     "https://localhost:3000",
   ],
-  methods: ["GET", "PUT", "PATCH", "POST", "OPTION", "DELETE", "HEAD"],
+  methods: ["GET", "PUT", "PATCH", "POST", "OPTIONS", "DELETE", "HEAD"],
   allowedHeaders: [
     "Content-Type",
     "Authorization",
     "X-Requested-With",
     "Access-Control-Allow-Origin",
+    "Origin",
+    "Accept",
   ],
   credentials: true,
   optionSuccessStatus: 200,
