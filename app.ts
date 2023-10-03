@@ -113,7 +113,8 @@ let redisStore = new (RedisStore as any)({
 const corsOptions = {
   // origin: [process.env.CORS_ORIGIN as string],
   origin: [
-    process.env.CORS_ORIGIN as string,
+    // process.env.CORS_ORIGIN as string,
+    "https://silexcms.onrender.com",
     "http://localhost:3000",
     "https://localhost:3000",
   ],
