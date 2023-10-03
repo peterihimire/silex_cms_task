@@ -123,6 +123,9 @@ const corsOptions = {
     "Authorization",
     "X-Requested-With",
     "Access-Control-Allow-Origin",
+    "Access-Control-Allow-Headers",
+    "Origin",
+    "Accept",
   ],
   credentials: true,
   optionSuccessStatus: 200,
@@ -146,8 +149,8 @@ const sessionOptions = {
     secure: true, // if true only transmit cookie over https
     httpOnly: true, // if true prevent client side JS from reading the cookie
     maxAge: 1000 * 60 * 60, // session max age in miliseconds
-    // sameSite: false,
-    sameSite: "none" as const,
+    domain: ".onrender.com",
+    sameSite: "none" as const, // sameSite: false,
   },
 };
 
