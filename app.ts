@@ -123,11 +123,10 @@ const corsOptions = {
     "Authorization",
     "X-Requested-With",
     "Access-Control-Allow-Origin",
-    "Origin",
-    "Accept",
   ],
   credentials: true,
   optionSuccessStatus: 200,
+  preflightContinue: false,
 };
 
 const multerOptions = multer({
@@ -138,6 +137,7 @@ const multerOptions = multer({
 
 const sessionOptions = {
   // store: new RedisStore({ client: redisClient }),
+  name: "pessionID",
   store: redisStore,
   secret: String(process.env.SESSION_SECRET),
   resave: false,
