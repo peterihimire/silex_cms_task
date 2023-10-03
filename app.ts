@@ -149,7 +149,7 @@ const sessionOptions = {
     secure: true, // if true only transmit cookie over https
     httpOnly: true, // if true prevent client side JS from reading the cookie
     maxAge: 1000 * 60 * 60, // session max age in miliseconds
-    domain: ".onrender.com",
+    domain: "https://silex-cms-task.onrender.com/",
     sameSite: "none" as const, // sameSite: false,
   },
 };
