@@ -144,9 +144,10 @@ const sessionOptions = {
   saveUninitialized: false,
   cookie: {
     secure: true, // if true only transmit cookie over https
-    httpOnly: false, // if true prevent client side JS from reading the cookie
+    httpOnly: true, // if true prevent client side JS from reading the cookie
     maxAge: 1000 * 60 * 60, // session max age in miliseconds
-    sameSite: "none" as const,
+    sameSite: false,
+    // sameSite: "none" as const,
   },
 };
 
